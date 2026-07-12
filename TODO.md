@@ -1,0 +1,3 @@
+- [ ] Revoir les args pour pouvoir utiliser 2 binaires différents pour serve & upgrade
+- [ ] Ajouter un param `--verbose` / `-v` pour avoir plus d'info de sortie, notamment les fichiers créés et leur chemin et virer le --debug qui ne fonctionne pas.
+- [ ] Ajouter un param `--env-var "KEY=VALUE"` pour ne pas être obligé de fournir un fichier .env si on a besoin d'ajouter quelques variables d'environnement
