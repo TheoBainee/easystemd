@@ -1,0 +1,16 @@
+[Unit]
+Description=easystemd - {{ name }} (serve)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type={{ exec_type }}
+WorkingDirectory={{ working_dir }}
+{% if env_file %}EnvironmentFile={{ env_file }}
+{% endif %}ExecStart={{ binary }} {{ serve_args }}
+Restart=always
+RestartSec={{ restart_sec }}
+TimeoutStopSec={{ stop_timeout }}
+
+[Install]
+WantedBy=default.target

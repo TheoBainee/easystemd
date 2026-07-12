@@ -1,0 +1,7 @@
+[Unit]
+Description=easystemd - {{ name }} (upgrade)
+After=easystemd-{{ name }}-serve.service
+
+[Service]
+Type=oneshot
+ExecStart={{ easystemd_exe }} _run-upgrade {{ name }}

@@ -1,0 +1,10 @@
+[Unit]
+Description=easystemd - {{ name }} (upgrade timer)
+
+[Timer]
+OnCalendar={{ schedule }}
+Persistent={{ persistent | lower }}
+RandomizedDelaySec={{ randomized_delay }}
+
+[Install]
+WantedBy=timers.target
