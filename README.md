@@ -90,6 +90,33 @@ easystemd remove mon-binaire --yes
 You can also pass a bare command name to `--binary` — it will be resolved via
 `shutil.which()` then `Path.resolve()` to an absolute path.
 
+### Real-world example: serving [opencode](https://opencode.ai)
+
+`opencode` is a standalone binary that exposes `opencode web` (a long-running
+web server) and `opencode upgrade` (a self-update command) — exactly the
+pattern `easystemd` automates:
+
+```bash
+easystemd add \
+  --name opencode-web \
+  --binary opencode \
+  --serve-args "web --mdns --port 12345 --hostname 0.0.0.0 --print-logs true" \
+  --upgrade-args "upgrade" \
+  --schedule "Mon 04:00" \
+  --randomized-delay 5
+```
+
+This generates `easystemd-opencode-web-serve.service` (auto-restarted on crash),
+`easystemd-opencode-web-upgrade.service` (stops the server, runs
+`opencode upgrade`, always restarts the server) and
+`easystemd-opencode-web-upgrade.timer` (fires every Monday at 04:00, ±5s random
+delay). Check it with:
+
+```bash
+easystemd status opencode-web
+easystemd logs opencode-web --serve --follow
+```
+
 ## CLI reference
 
 ### `easystemd add`
