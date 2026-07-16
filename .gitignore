@@ -29,3 +29,8 @@ htmlcov/
 *.swo
 *~
 .DS_Store
+
+# Environment / secrets
+.env
+.env.*
+*.env
